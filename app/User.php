@@ -37,7 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-/**
+    /**
      * このユーザが所有する投稿
      */
     public function posts()

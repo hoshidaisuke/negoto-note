@@ -27,14 +27,13 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
         $attributes = new Attribute;
 
-
-
+        $count_like_users = $post->like_users()->count();
 
         $attribute = $attributes::findOrFail($post->attribute_id);
         return view('show.index', [
             'post' => $post,
             'attribute' => $attribute,
-
+            'count_like_users' => $count_like_users,
         ]);
     }
 

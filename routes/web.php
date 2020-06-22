@@ -24,5 +24,8 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('posts', 'PostsController', ['only' => ['store', 'destroy']]);
     
-
+    Route::group(['prefix'=>'shows/{id}'],function(){
+        Route::post('like', 'LikesController@store')->name('likes.like');
+        Route::delete('unlike', 'LikesController@store')->name('likes.unlike');
+    });
 });

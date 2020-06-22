@@ -22,6 +22,8 @@
                         <p>{!! $attribute->content !!}の寝言</p>
                         <p>{{ $post->content }}</p>
                         
+                        <p>{!! Form::submit('いいね', ['class' => "btn btn-success"]) !!}</p>
+                        <p>{{ $count_like_users }}</p>
 
                         <p class="micro-copy">\Twitterで寝言を拡散しよう！/</p>
                         @if (Auth::check())
