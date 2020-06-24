@@ -5,25 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Post;
+use App\Like;
 use App\Attribute;
 
 class PostsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+    $sort = $request->sort;
+     if($sort === '1') {
+        $posts = Post::withCount('like_users')->orderBy('like_users_count', 'desc')->paginate(10);
+
+     } else {
         $posts = Post::orderBy('id', 'desc')->paginate(10);
+         
+     }
+
         $attributes = new Attribute;
+
 
         return view('index',[
             'posts' => $posts,
             'attributes' => $attributes,
+            'sort' => $sort,
         ]);
     }
 
     public function show($id)
     {
 
-        // 投稿を取得
         $post = Post::findOrFail($id);
         $attributes = new Attribute;
 
@@ -55,6 +65,6 @@ class PostsController extends Controller
         
         return back();
     }
-    
+
     
 }

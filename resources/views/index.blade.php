@@ -3,17 +3,19 @@
 @section('content')
 
 <div class="main-image">
-    <img src="./img/invisaqa_main.png" alt="寝言ノート">
+    <p>
+    ねごと
+    <img src="./img/ochobo.JPG" alt="">
+    のーと
+    </p>
 </div>
 @if (Auth::check())
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h2 class="card-header">寝言ノート</h2>
                 <div class="card-body">
                         {!! Form::open(['route' => 'posts.store']) !!}
                             <div class="form-group">
-                                {!! Form::label('attribute', '私の') !!}
                                 {{Form::select('attribute', [
                                     '嫁' => '嫁',
                                     '旦那' => '旦那',
@@ -29,10 +31,9 @@
                                     '姉' => '姉',
                                     '友人' => '友人',
                                     'その他' => 'その他',
-                                ])}} の
+                                ])}} の寝言
                             </div>
                             <div class="form-group">
-                                {!! Form::label('content', '寝言') !!}
                                 {!! Form::textarea('content', '', ['class' => 'form-control', 'rows' => '3' ]) !!}
                             </div>
                             {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
@@ -47,7 +48,6 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <h2 class="card-header">寝言ノート</h2>
 
             <div class="card-body">
                 @if (session('status'))
@@ -55,13 +55,30 @@
                         {{ session('status') }}
                     </div>
                 @endif
+                {!! Form::open([
+                    'route' => ['posts.index'],
+                    'method' => 'get'
+                ]) !!}
 
-                <ul class="question">
+
+                    <div class="form-group sort">
+                        {{Form::select('sort', [
+                            '新着順',
+                            'いいね数順',
+                        ], $sort)}}
+                        {!! Form::submit('決定', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                    
+                {!! Form::close() !!}                
+                <ul class="post-list">
                     @foreach($posts as $post)
                         <li>
                             <a href="{{ route('show.index', ['id' => $post->id]) }}">
-                                <p>{!! $attributes::findOrFail($post->attribute_id)->content !!}の寝言</p>
-                                <p>{!! $post->content !!}</p>
+                                <p class="post">【{{ $attributes::findOrFail($post->attribute_id)->content }}の寝言】{{ $post->content }}</p>
+                                <p><button type="submit" class="btn-like"><span class="material-icons">
+                                <span class="material-icons">
+                                favorite_border
+                                </span></button>{{ $post->like_users()->count() }}</p>
                             </a>
                         </li>
                     @endforeach

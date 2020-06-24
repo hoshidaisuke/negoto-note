@@ -56,14 +56,14 @@ class User extends Authenticatable
     /**
     * 投稿をいいねする
     */
-    public function like($userId)
+    public function like($postId)
     {
         // すでにいいねしているかの確認
-        $exist = $this->is_like($userId);
+        $exist = $this->is_like($postId);
         if ($exist) {
             return false;
         } else {
-            $this->likes()->attach($userId);
+            $this->likes()->attach($postId);
             return true;
         }
     }
@@ -72,12 +72,12 @@ class User extends Authenticatable
     /**
     * いいねを外す
     */
-    public function unlike($userId)
+    public function unlike($postId)
     {
         // すでに参考になったしているかの確認
-        $exist = $this->is_like($userId);
+        $exist = $this->is_like($postId);
         if ($exist) {
-            $this->likes()->detach($userId);
+            $this->likes()->detach($postId);
             return true;
         } else {
             return false;
@@ -88,9 +88,9 @@ class User extends Authenticatable
     /**
      * いいねしているか
      */
-    public function is_like($userId)
+    public function is_like($postId)
     {
-        return $this->likes()->where('user_id', $userId)->exists();
+        return $this->likes()->where('post_id', $postId)->exists();
     }
     
 }

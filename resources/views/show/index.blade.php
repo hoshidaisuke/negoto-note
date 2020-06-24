@@ -19,12 +19,29 @@
                 @endif
 
                     <div class="alert alert-dark" role="alert">
-                        <p>{!! $attribute->content !!}の寝言</p>
-                        <p>{{ $post->content }}</p>
-                        
-                        <p>{!! Form::submit('いいね', ['class' => "btn btn-success"]) !!}</p>
-                        <p>{{ $count_like_users }}</p>
+                        <p>{{ $attribute->content }}の寝言</p>
+                        <p>{{ nl2br(e($post->content)) }}</p>
+                        @if (Auth::check())
+                            @if (Auth::user()->is_like($post->id))
+                                {!! Form::open(['route' => ['likes.unlike', $post->id], 'method' => 'delete']) !!}
+                                <button type="submit" class="btn-like"><span class="material-icons">
+                                favorite
+                                </span></button>{{ $count_like_users }}
+                                {!! Form::close() !!}
+                            @else
+                                {!! Form::open(['route' => ['likes.like', $post->id]]) !!}
+                                <button type="submit" class="btn-like"><span class="material-icons">
+                                <span class="material-icons">
+                                favorite_border
+                                </span></button>{{ $count_like_users }}
+                                {!! Form::close() !!}
+                            @endif
+                             
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-success">いいね</a>
 
+                        @endif
+                        
                         <p class="micro-copy">\Twitterで寝言を拡散しよう！/</p>
                         @if (Auth::check())
                             @if($post->user_id === Auth::user()->id)

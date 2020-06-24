@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Post extends Model
 {
-    protected $fillable = ['user_id', 'attribute_id', 'content'];
+    protected $fillable = ['user_id', 'attribute_id', 'content', 'created_at'];
     
     /*
     * この投稿を所有するユーザ
@@ -31,5 +33,5 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id')->withTimestamps();
     }
-    
+
 }
