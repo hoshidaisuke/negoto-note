@@ -5,9 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                
                 <h2 class="card-header">{{ Auth::user()->name }}</h2>
-                
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -17,7 +15,6 @@
                         {!! Form::model($post, ['route' => ['mypage.update', $post->id], 'method' => 'put']) !!}
                             <div class="form-group">
                                 {!! Form::label('attribute', '私の') !!}
-
                                 {{Form::select('attribute', [
                                     'bride' => '嫁',
                                     'husband' => '旦那',

@@ -12,6 +12,11 @@ class UsersController extends Controller
 {
     public function show($id)
     {
+        // ログインユーザページ以外のアクセスはリダイレクト
+        if(\Auth::user()->id != $id) {
+            return redirect('/');
+        }
+    
         $user = User::findOrFail($id);
         $attributes = new Attribute;
         $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
@@ -27,8 +32,8 @@ class UsersController extends Controller
     {
         $post = Post::findOrFail($id);
         $attributes = new Attribute;
-
         $attribute = $attributes::findOrFail($post->attribute_id);
+
         return view('mypage.edit', [
             'post' => $post,
             'attribute' => $attribute,
@@ -41,6 +46,7 @@ class UsersController extends Controller
             'attribute' => 'required',    
             'content' => 'required|max:255',  
         ]);
+
         $attributes = new Attribute;
         $attribute = $attributes::where('code', $request->attribute)->first();
 
@@ -48,7 +54,6 @@ class UsersController extends Controller
         $post->attribute_id = $attribute->id;
         $post->content = $request->content;
         $post->save();
-
 
         return redirect('mypage/' . \Auth::user()->id);
     }

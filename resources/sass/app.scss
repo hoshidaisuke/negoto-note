@@ -80,37 +80,7 @@ header .bg-dark{
 .row.justify-content-center {
     margin-bottom: 20px;
 }
-.list-answer {
-    margin: 0;
-    padding: 0;
-}
-.initial-letter {
-    font-size: 26px;
-    color: #68abff;
-    display: flex;
-    align-items: center;
-    &.q {
-        align-items: flex-start;
-        color: #f4a591;
-        margin-bottom: 2rem;
-    }
-    .small {
-        font-size: 16px;
-    }
-}
-@media screen and (max-width: 834px) {
-    .initial-letter {
-        font-size: 18px;
-    }
-    h2.card-header {
-        font-size: 22px;
-    }
-}
 
-.user_name {
-    font-size: 12px;
-    text-align: right;
-}
 .card-body > .post > li {
     padding: 10px 0;
     list-style: none;
@@ -121,34 +91,20 @@ header .bg-dark{
         font-size: 18px;
     }
 }
-.list-answer li {
-    border-top: 1px dashed #333;
-    list-style: none;
-    margin-top: 20px;
-    padding: 0;
-}
 .alert-dark {
     color: #1b1e21;
     background-color: #fff;
     border-color: #c6c8ca;
 }
-.btn.alert-dark {
-    background: #2886fb;
-    color: #fff;
-    &:disabled {
-        background: #a5a5a5;
-    }
-}
 
-.alert-success {
-    color: #333;
-    border-color: #91caf4;
-    margin-top: 20px;
-    background-color: #f5faff;
-}
+
 .btn-like {
     border: none;
     background: none;
+    &:focus {
+        border: none;
+        outline: none;
+    }
 }
 .btn-wrap {
     display: flex;
@@ -157,17 +113,7 @@ header .bg-dark{
     }
 }
 
-.btn-success {
-    color: #fff;
-    background-color: #7bb5d8;
-    border-color: #6286ad;
-}
-.btn-success:hover, .btn-success.focus, .btn-success:focus, 
-.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
-    background-color: #5f99d8;
-    border-color: #0062cc;
-    box-shadow: none;
-}
+
 
 .btn-primary:hover {
     background-color: #5f99d8;
@@ -178,10 +124,7 @@ header .bg-dark{
     background-color: #7bb5d8;
     border-color: #6286ad;
 }
-.page-item.active .page-link {
-    background-color: #7bb5d8;
-    border-color: #6286ad;
-}
+
 .micro-copy {
     font-size: 12px;
     margin-bottom: 5px;

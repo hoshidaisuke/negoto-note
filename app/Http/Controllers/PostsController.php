@@ -12,17 +12,14 @@ class PostsController extends Controller
 {
     public function index(Request $request)
     {
-    $sort = $request->sort;
-     if($sort === '1') {
-        $posts = Post::withCount('like_users')->orderBy('like_users_count', 'desc')->paginate(10);
-
-     } else {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
-         
-     }
+        $sort = $request->sort;
+        if($sort === '1') {
+            $posts = Post::withCount('like_users')->orderBy('like_users_count', 'desc')->paginate(10);
+        } else {
+            $posts = Post::orderBy('id', 'desc')->paginate(10);
+        }
 
         $attributes = new Attribute;
-
 
         return view('index',[
             'posts' => $posts,
@@ -33,13 +30,13 @@ class PostsController extends Controller
 
     public function show($id)
     {
-
         $post = Post::findOrFail($id);
-        $attributes = new Attribute;
 
+        $attributes = new Attribute;
+        $attribute = $attributes::findOrFail($post->attribute_id);
+        
         $count_like_users = $post->like_users()->count();
 
-        $attribute = $attributes::findOrFail($post->attribute_id);
         return view('show.index', [
             'post' => $post,
             'attribute' => $attribute,
@@ -56,7 +53,6 @@ class PostsController extends Controller
         
         $attributes = new Attribute;
         $attribute = $attributes::where('content', $request->attribute)->first();
-
         
         $request->user()->posts()->create([
             'content' => $request->content, 
@@ -65,6 +61,5 @@ class PostsController extends Controller
         
         return back();
     }
-
     
 }

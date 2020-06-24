@@ -17,20 +17,20 @@
                         {!! Form::open(['route' => 'posts.store']) !!}
                             <div class="form-group">
                                 {{Form::select('attribute', [
-                                    '嫁' => '嫁',
-                                    '旦那' => '旦那',
-                                    '彼氏' => '彼氏',
-                                    '彼女' => '彼女',
-                                    '父' => '父',
-                                    '母' => '母',
-                                    '息子' => '息子',
-                                    '娘' => '娘',
-                                    '祖父' => '祖父',
-                                    '祖母' => '祖母',
-                                    '兄' => '兄',
-                                    '姉' => '姉',
-                                    '友人' => '友人',
-                                    'その他' => 'その他',
+                                    'bride' => '嫁',
+                                    'husband' => '旦那',
+                                    'boyfriend' => '彼氏',
+                                    'girlfriend' => '彼女',
+                                    'father' => '父',
+                                    'mother' => '母',
+                                    'son' => '息子',
+                                    'daughter' => '娘',
+                                    'grandfathe' => '祖父',
+                                    'grandmother' => '祖母',
+                                    'brother' => '兄',
+                                    'sister' => '姉',
+                                    'friend' => '友人',
+                                    'Other' => 'その他',
                                 ])}} の寝言
                             </div>
                             <div class="form-group">

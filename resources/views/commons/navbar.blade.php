@@ -13,9 +13,7 @@
                 @if (Auth::check())
                     {{-- ユーザ一覧ページへのリンク --}}
                     
-                    <li class="nav-item">
-                        <div class="nav-link"><a href="{{ route('mypage.show', ['mypage' => Auth::id()]) }}" class="nav-link"><span class="material-icons">keyboard_arrow_right</span>{{ Auth::user()->name }}</a></div>
-                    </li>
+                    <li class="nav-item"><div class="nav-link"><a href="{{ route('mypage.show', ['mypage' => Auth::id()]) }}" class="nav-link"><span class="material-icons">keyboard_arrow_right</span>{{ Auth::user()->name }}</a></div></li>
                     <li class="nav-item"><div class="nav-link"><a href="{{ route('logout.get') }}" class="nav-link">ログアウト</a></div></li>
                 @else
                     {{-- ユーザ登録ページへのリンク --}}
