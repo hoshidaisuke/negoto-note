@@ -68,7 +68,6 @@ class User extends Authenticatable
         }
     }
 
-    
     /**
     * いいねを外す
     */
@@ -83,7 +82,6 @@ class User extends Authenticatable
             return false;
         }
     }
-
 
     /**
      * いいねしているか

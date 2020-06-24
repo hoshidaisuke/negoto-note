@@ -54,9 +54,9 @@ class PostsController extends Controller
             'content' => 'required|max:255',    
         ]);
         
-        $attribute = new Attribute;
-        $attribute->content = $request->attribute;
-        $attribute->save();
+        $attributes = new Attribute;
+        $attribute = $attributes::where('content', $request->attribute)->first();
+
         
         $request->user()->posts()->create([
             'content' => $request->content, 
