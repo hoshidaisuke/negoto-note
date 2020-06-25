@@ -8,5 +8,5 @@
     </nav>
 
 
-    <small>Copyright © 寝言ノート All Rights Reserved.</small>
+    <small>Copyright © ねごとのーと All Rights Reserved.</small>
 </footer>

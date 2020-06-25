@@ -167,7 +167,6 @@ background: #fff;
     &.widthauto {
         width: 150px;
         padding: 0 20px 0 15px;
-        margin-left: 5px;
         text-align: center;
     }
 }
@@ -299,4 +298,14 @@ justify-content: space-between;
 .snsbtniti2 li{
 flex-basis: 31.3%;
 text-align:center !important;
+}
+.sns-wrapper {
+    margin-top: 20px;
+    display: flex;
+    div {
+        text-align: center;
+        &+ div {
+            margin-left: 20px;
+        }
+    }
 }
