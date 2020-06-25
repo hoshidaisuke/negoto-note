@@ -14,6 +14,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
+                    
                         {!! Form::open(['route' => 'posts.store']) !!}
                             <div class="form-group">
                                 {{Form::select('attribute', [

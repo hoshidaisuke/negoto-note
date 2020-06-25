@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Post;
-use App\Like;
 use App\Attribute;
 
 class PostsController extends Controller
@@ -52,8 +51,7 @@ class PostsController extends Controller
         ]);
         
         $attributes = new Attribute;
-        $attribute = $attributes::where('content', $request->attribute)->first();
-        
+        $attribute = $attributes::where('code', $request->attribute)->first();
         $request->user()->posts()->create([
             'content' => $request->content, 
             'attribute_id' => $attribute->id, 
